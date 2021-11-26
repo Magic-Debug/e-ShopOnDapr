@@ -4,6 +4,8 @@
     <RootNamespace>Microsoft.eShopOnContainers.BuildingBlocks.EventBus</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dapr.Client" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\dapr-sdk-1.4.0\Dapr.Client\Dapr.Client.csproj" />
   </ItemGroup>
 </Project>
