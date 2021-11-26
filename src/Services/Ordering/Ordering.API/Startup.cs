@@ -24,6 +24,10 @@ using Microsoft.OpenApi.Models;
 
 namespace Microsoft.eShopOnDapr.Services.Ordering.API
 {
+
+    /// <summary>
+    /// 注册中心，服务发现，服务调用链路追踪，请求熔断，重试限流
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -35,7 +39,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddDapr();
+            services.AddControllers().AddDapr();//将DaprClient类添加到 ASP.NET Core注入系统
 
             services.AddCustomSwagger(Configuration);
             services.AddCustomAuth(Configuration);
@@ -43,7 +47,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
 
             services.AddActors(options =>
             {
-                options.Actors.RegisterActor<OrderingProcessActor>();
+                options.Actors.RegisterActor<OrderingProcessActor>();//添加Actor
             });
 
             services.AddCors(options =>
@@ -86,6 +90,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
             }
 
             app.UseRouting();
+            //添加发布支持
             app.UseCloudEvents();
 
             app.UseAuthentication();
@@ -96,8 +101,11 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
+                //添加订阅支持
                 endpoints.MapSubscribeHandler();
+
                 endpoints.MapActorsHandlers();
+
                 endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
                 {
                     Predicate = _ => true,

@@ -104,6 +104,7 @@ namespace Dapr.Client
 
         /// <summary>
         /// Publishes an event to the specified topic.
+        /// Dapr提供基础模块，可显著简化实现 发布/订阅 功能，从而和底层基础设施解耦，编写业务逻辑时不需要关心是什么消息队列
         /// </summary>
         /// <param name="pubsubName">The name of the pubsub component to use.</param>
         /// <param name="topicName">The name of the topic the request should be published to.</param>
