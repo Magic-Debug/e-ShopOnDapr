@@ -84,6 +84,40 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapr.Client", "dapr-sdk-1.4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapr.Extensions.Configuration", "dapr-sdk-1.4.0\Dapr.Extensions.Configuration\Dapr.Extensions.Configuration.csproj", "{0FC92522-2B6B-428D-BAC9-A37033DA30FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{3C9EECDC-260F-47F4-A4C9-066680CAEB75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{C98D76E6-6B07-4BF1-9129-89709FEED5E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "helm", "helm", "{A452422B-A500-4566-9B3F-B53A4BA16974}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\k8s\helm\Chart.yaml = deploy\k8s\helm\Chart.yaml
+		deploy\k8s\helm\values.yaml = deploy\k8s\helm\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{0006D7F2-7A8D-4B8A-9A0C-226B82DB8B88}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\k8s\helm\templates\apigateway.yaml = deploy\k8s\helm\templates\apigateway.yaml
+		deploy\k8s\helm\templates\basket.yaml = deploy\k8s\helm\templates\basket.yaml
+		deploy\k8s\helm\templates\blazorclient.yaml = deploy\k8s\helm\templates\blazorclient.yaml
+		deploy\k8s\helm\templates\catalog.yaml = deploy\k8s\helm\templates\catalog.yaml
+		deploy\k8s\helm\templates\dapr-config.yaml = deploy\k8s\helm\templates\dapr-config.yaml
+		deploy\k8s\helm\templates\identity.yaml = deploy\k8s\helm\templates\identity.yaml
+		deploy\k8s\helm\templates\namespace.yaml = deploy\k8s\helm\templates\namespace.yaml
+		deploy\k8s\helm\templates\ordering.yaml = deploy\k8s\helm\templates\ordering.yaml
+		deploy\k8s\helm\templates\payment.yaml = deploy\k8s\helm\templates\payment.yaml
+		deploy\k8s\helm\templates\rabbitmq-pubsub.yaml = deploy\k8s\helm\templates\rabbitmq-pubsub.yaml
+		deploy\k8s\helm\templates\rabbitmq.yaml = deploy\k8s\helm\templates\rabbitmq.yaml
+		deploy\k8s\helm\templates\redis-statestore.yaml = deploy\k8s\helm\templates\redis-statestore.yaml
+		deploy\k8s\helm\templates\redis.yaml = deploy\k8s\helm\templates\redis.yaml
+		deploy\k8s\helm\templates\secrets.yaml = deploy\k8s\helm\templates\secrets.yaml
+		deploy\k8s\helm\templates\sendmail.yaml = deploy\k8s\helm\templates\sendmail.yaml
+		deploy\k8s\helm\templates\seq.yaml = deploy\k8s\helm\templates\seq.yaml
+		deploy\k8s\helm\templates\sqldata.yaml = deploy\k8s\helm\templates\sqldata.yaml
+		deploy\k8s\helm\templates\webshoppingagg.yaml = deploy\k8s\helm\templates\webshoppingagg.yaml
+		deploy\k8s\helm\templates\webstatus.yaml = deploy\k8s\helm\templates\webstatus.yaml
+		deploy\k8s\helm\templates\zipkin.yaml = deploy\k8s\helm\templates\zipkin.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +223,9 @@ Global
 		{CC3F7658-9354-4553-9D91-97A682DBF4BC} = {85AD46AA-7881-474F-88ED-7D561DB6BC72}
 		{5F979C8F-8C68-49F8-B21D-4C7DA73939A2} = {85AD46AA-7881-474F-88ED-7D561DB6BC72}
 		{0FC92522-2B6B-428D-BAC9-A37033DA30FD} = {85AD46AA-7881-474F-88ED-7D561DB6BC72}
+		{C98D76E6-6B07-4BF1-9129-89709FEED5E6} = {3C9EECDC-260F-47F4-A4C9-066680CAEB75}
+		{A452422B-A500-4566-9B3F-B53A4BA16974} = {C98D76E6-6B07-4BF1-9129-89709FEED5E6}
+		{0006D7F2-7A8D-4B8A-9A0C-226B82DB8B88} = {A452422B-A500-4566-9B3F-B53A4BA16974}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBED0B95-87F8-439B-BC1E-382C8ABD4F2E}
