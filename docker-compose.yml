@@ -115,6 +115,21 @@ services:
 
   webstatus:
     image: xabarilcoding/healthchecksui:5.0.0
+  
+  mysql-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: zxcvbnm
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
   dapr-placement:
     image: "daprio/dapr:1.0.0"
