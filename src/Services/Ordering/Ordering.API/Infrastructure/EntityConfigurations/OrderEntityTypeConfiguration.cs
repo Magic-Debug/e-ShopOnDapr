@@ -15,7 +15,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.EntityConfi
             orderConfiguration.HasAlternateKey(o => o.OrderNumber);
 
             orderConfiguration.Property(o => o.OrderNumber)
-                .UseHiLo("orderseq");
+                .UseCollation("orderseq");
 
             orderConfiguration
                 .OwnsOne(o => o.Address, a =>

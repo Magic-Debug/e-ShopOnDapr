@@ -11,7 +11,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.EntityConfig
             builder.ToTable("CatalogItem");
 
             builder.Property(item => item.Id)
-                .UseHiLo("catalog_hilo")
+                .UseCollation("catalog_hilo")
                 .IsRequired();
 
             builder.Property(item => item.Name)

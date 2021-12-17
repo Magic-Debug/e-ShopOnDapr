@@ -13,7 +13,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.EntityConfig
             builder.HasKey(type => type.Id);
 
             builder.Property(type => type.Id)
-               .UseHiLo("catalog_type_hilo")
+               .UseCollation("catalog_type_hilo")
                .IsRequired();
 
             builder.Property(type => type.Name)

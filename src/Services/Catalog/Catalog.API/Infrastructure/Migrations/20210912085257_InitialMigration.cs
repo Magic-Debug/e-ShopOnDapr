@@ -6,17 +6,26 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "catalog_brand_hilo",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "catalog_brand_hilo",
+            //    startValue: 2,
+            //    incrementBy: 10, minValue: 1,
+            //    maxValue: int.MaxValue
+            //    );
 
-            migrationBuilder.CreateSequence(
-                name: "catalog_hilo",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "catalog_hilo",
+            //    startValue: 2,
+            //    incrementBy: 10, minValue: 1,
+            //    maxValue: int.MaxValue
+            //    );
 
-            migrationBuilder.CreateSequence(
-                name: "catalog_type_hilo",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "catalog_type_hilo",
+            //    startValue: 2,
+            //    incrementBy: 10, minValue: 1,
+            //    maxValue: int.MaxValue
+            //    );
 
             migrationBuilder.CreateTable(
                 name: "CatalogBrand",
@@ -49,7 +58,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: false),
-                    PictureFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PictureFileName = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     CatalogTypeId = table.Column<int>(type: "int", nullable: false),
                     CatalogBrandId = table.Column<int>(type: "int", nullable: false),
                     AvailableStock = table.Column<int>(type: "int", nullable: false)

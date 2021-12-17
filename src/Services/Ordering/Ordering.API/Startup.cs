@@ -71,7 +71,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
             services.AddSignalR();
 
             services.AddDbContext<OrderingDbContext>(
-                options => options.UseSqlServer(Configuration["SqlConnectionString"]));
+                options => options.UseMySQL(Configuration["MySqlConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

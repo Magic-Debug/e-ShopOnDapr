@@ -7,29 +7,29 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "orderitemseq",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "orderitemseq",
+            //    incrementBy: 10);
 
-            migrationBuilder.CreateSequence(
-                name: "orderseq",
-                incrementBy: 10);
+            //migrationBuilder.CreateSequence(
+            //    name: "orderseq",
+            //    incrementBy: 10);
 
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     OrderNumber = table.Column<int>(type: "int", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BuyerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    OrderDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    OrderStatus = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    Address_Street = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    Address_City = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    Address_State = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    Address_Country = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    BuyerId = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    BuyerEmail = table.Column<string>(type: "nvarchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,22 +42,24 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductName = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     UnitPrice = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: false),
                     Units = table.Column<int>(type: "int", nullable: false),
-                    PictureFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PictureFileName = table.Column<string>(type: "nvarchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+
+                    //table.ForeignKey(
+                    //    name: "FK_OrderItems_Orders_OrderId",
+                    //    column: x => x.OrderId,
+                    //    principalTable: "Orders",
+                    //    principalColumn: "Id",
+                    //    onDelete: ReferentialAction.Cascade);
+
                 });
 
             migrationBuilder.CreateIndex(

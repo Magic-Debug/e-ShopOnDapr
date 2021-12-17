@@ -2,58 +2,47 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure;
-using MySql.EntityFrameworkCore.Metadata;
 
 namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderingDbContext))]
-    [Migration("20210916144350_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20211216065956_initcreate")]
+    partial class initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.HasSequence("orderitemseq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("orderseq")
-                .IncrementsBy(10);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.10");
 
             modelBuilder.Entity("Microsoft.eShopOnDapr.Services.Ordering.API.Model.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<byte[]>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("varbinary(16)");
 
                     b.Property<string>("BuyerEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("BuyerId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("OrderNumber")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "orderseq")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .UseCollation("orderseq");
 
                     b.Property<string>("OrderStatus")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -67,24 +56,24 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "orderitemseq")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .UseCollation("orderitemseq");
 
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<byte[]>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("varbinary(16)");
 
                     b.Property<string>("PictureFileName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("UnitPrice")
                         .HasPrecision(4, 2)
-                        .HasColumnType("decimal(4,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("Units")
                         .HasColumnType("int");
@@ -100,20 +89,20 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 {
                     b.OwnsOne("Microsoft.eShopOnDapr.Services.Ordering.API.Model.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<byte[]>("OrderId")
+                                .HasColumnType("varbinary(16)");
 
                             b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("text");
 
                             b1.Property<string>("Country")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("text");
 
                             b1.Property<string>("State")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("text");
 
                             b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("text");
 
                             b1.HasKey("OrderId");
 

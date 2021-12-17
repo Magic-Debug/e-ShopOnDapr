@@ -23,7 +23,7 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
 
             retryPolicy.Execute(() =>
             {
-                context.Database.Migrate();
+              //  context.Database.Migrate();
 
                 var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 var alice = userMgr.FindByNameAsync("alice").Result;

@@ -50,7 +50,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()
                 .AddSqlServer(
-                    Configuration["SqlConnectionString"],
+                    Configuration["MySqlConnectionString"],
                     name: "CatalogDB-check",
                     tags: new string[] { "catalogdb" });
 
@@ -59,7 +59,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API
             services.AddScoped<OrderStatusChangedToPaidIntegrationEventHandler>();
 
             services.AddDbContext<CatalogDbContext>(
-                options => options.UseSqlServer(Configuration["SqlConnectionString"]));
+                options => options.UseMySQL(Configuration["MySqlConnectionString"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

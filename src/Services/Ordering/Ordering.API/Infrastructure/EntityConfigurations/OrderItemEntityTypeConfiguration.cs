@@ -13,7 +13,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.EntityConfi
             orderItemConfiguration.HasKey(o => o.Id);
 
             orderItemConfiguration.Property(o => o.Id)
-                .UseHiLo("orderitemseq");
+                .UseCollation("orderitemseq");
 
             orderItemConfiguration.Property(item => item.UnitPrice)
                 .HasPrecision(4, 2);

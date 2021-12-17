@@ -33,7 +33,7 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(Configuration["SqlConnectionString"]));
+                options => options.UseMySQL(Configuration["MySqlConnectionString"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -62,7 +62,7 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
 
             services.AddHealthChecks()
                 .AddCheck("self", () => HealthCheckResult.Healthy())
-                .AddSqlServer(Configuration["SqlConnectionString"],
+                .AddSqlServer(Configuration["MySqlConnectionString"],
                     name: "IdentityDB-check",
                     tags: new string[] { "IdentityDB" });
 
