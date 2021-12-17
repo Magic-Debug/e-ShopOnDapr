@@ -11,9 +11,6 @@ services:
   seq:
     image: datalust/seq:latest
 
-  sqldata:
-    image: mcr.microsoft.com/mssql/server:2017-latest 
-
   zipkin:
     image: openzipkin/zipkin-slim
 
@@ -44,7 +41,7 @@ services:
       context: .
       dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
     depends_on:
-      - sqldata
+      - mysql-db
 
   catalog-api-dapr:
     image: "daprio/daprd:1.4.0"
@@ -58,7 +55,7 @@ services:
       context: .
       dockerfile: src/Services/Identity/Identity.API/Dockerfile
     depends_on:
-      - sqldata
+      - mysql-db
 
   ordering-api:
     image: ${REGISTRY:-eshopdapr}/ordering.api:${TAG:-latest}
@@ -66,7 +63,7 @@ services:
       context: .
       dockerfile: src/Services/Ordering/Ordering.API/Dockerfile
     depends_on:
-      - sqldata
+      - mysql-db
 
   ordering-api-dapr:
     image: "daprio/daprd:1.4.0"
@@ -96,7 +93,7 @@ services:
       - catalog-api
       - identity-api
       - ordering-api
-      - sqldata
+      - mysql-db
 
   webshoppingagg-dapr:
     image: "daprio/daprd:1.4.0"
