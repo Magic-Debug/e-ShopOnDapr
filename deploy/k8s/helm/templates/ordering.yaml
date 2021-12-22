@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: ordering-api
-          image: eshopdapr/ordering.api:latest
+          image: wjkhappy14/ordering.api:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
