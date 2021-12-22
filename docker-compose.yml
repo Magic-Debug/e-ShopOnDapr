@@ -15,7 +15,7 @@ services:
     image: openzipkin/zipkin-slim
 
   basket-api:
-    image: ${REGISTRY:-eshopdapr}/basket.api:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/basket.api:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Basket/Basket.API/Dockerfile
@@ -30,13 +30,13 @@ services:
       - basket-api
 
   blazor-client:
-    image: ${REGISTRY:-eshopdapr}/blazor.client:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/blazor.client:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Web/BlazorClient.Host/Dockerfile
 
   catalog-api:
-    image: ${REGISTRY:-eshopdapr}/catalog.api:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/catalog.api:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
@@ -50,7 +50,7 @@ services:
       - catalog-api
 
   identity-api:
-    image: ${REGISTRY:-eshopdapr}/identity.api:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/identity.api:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Identity/Identity.API/Dockerfile
@@ -58,7 +58,7 @@ services:
       - mysql-db
 
   ordering-api:
-    image: ${REGISTRY:-eshopdapr}/ordering.api:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/ordering.api:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Ordering/Ordering.API/Dockerfile
@@ -72,7 +72,7 @@ services:
       - ordering-api
 
   payment-api:
-    image: ${REGISTRY:-eshopdapr}/payment.api:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/payment.api:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Payment/Payment.API/Dockerfile
@@ -84,7 +84,7 @@ services:
       - payment-api
 
   webshoppingagg:
-    image: ${REGISTRY:-eshopdapr}/webshoppingagg:${TAG:-latest}
+    image: ${REGISTRY:-wjkhappy14}/webshoppingagg:${TAG:-latest}
     build:
       context: .
       dockerfile: src/ApiGateways/Aggregators/Web.Shopping.HttpAggregator/Dockerfile
