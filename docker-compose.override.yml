@@ -22,14 +22,14 @@ services:
     ports:
       - "5340:80"
 
-  sqldata:
+  mysql-db:
     environment:
-      - SA_PASSWORD=Pass@word
+      - ROOT_PASSWORD=zxcvbnm
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"
     volumes:
-      - eshop-sqldata:/var/opt/mssql
+      - eshop-mysql-db:/var/opt/mysql
 
   zipkin:
     ports:
@@ -72,7 +72,7 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - RetryMigrations=true
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnDapr.Services.CatalogDb;User Id=sa;Password=Pass@word;TrustServerCertificate=true}
+      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
     ports:
       - "5101:80"
       - "50002:50001"
@@ -93,7 +93,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=sqldata;Database=Microsoft.eShopOnDapr.Service.IdentityDb;User Id=sa;Password=Pass@word}
+      - SqlConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=mysql-db;database=eShop.Identity; UID=root; password=zxcvbnm; SSLMode=none}
       - RetryMigrations=true
       - BlazorClientUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5104
       - BasketApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5103
@@ -110,7 +110,7 @@ services:
       - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
       - RetryMigrations=true
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=sqldata;Database=Microsoft.eShopOnDapr.Services.OrderingDb;User Id=sa;Password=Pass@word;TrustServerCertificate=true}
+      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Ordering; UID=root; password=zxcvbnm; SSLMode=none}
     ports:
       - "5102:80"
       - "50003:50001"
@@ -219,7 +219,7 @@ services:
       - "50000:50000"
 
 volumes:
-  eshop-sqldata:
+  eshop-mysql-db:
     external: false
   eshop-nosqldata:
     external: false
