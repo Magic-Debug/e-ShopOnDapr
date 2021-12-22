@@ -49,7 +49,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API
             healthChecksBuilder
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()
-                .AddSqlServer(
+                .AddMySql(
                     Configuration["MySqlConnectionString"],
                     name: "CatalogDB-check",
                     tags: new string[] { "catalogdb" });

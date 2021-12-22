@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnDapr.Services.Ordering.API.Model;
+using MySql.Data.MySqlClient;
 
 namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Repositories
 {
@@ -29,7 +29,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Repositorie
                 return order;
             }
             catch (DbUpdateException ex)
-               when ((ex.InnerException as SqlException)?.Number == 2627)
+               when ((ex.InnerException as MySqlException)?.Number == 2627)
             {
                 return await GetOrderByIdAsync(order.Id);
             }

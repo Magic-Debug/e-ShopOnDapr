@@ -181,7 +181,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API
             builder
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()
-                .AddSqlServer(
+                .AddMySql(
                     configuration["SqlConnectionString"],
                     name: "OrderingDB-check",
                     tags: new string[] { "orderingdb" });
