@@ -9,7 +9,7 @@ using Microsoft.eShopOnDapr.Services.Identity.API.Data;
 namespace Microsoft.eShopOnDapr.Services.Identity.API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211216064509_initcreate")]
+    [Migration("20220107062905_initcreate")]
     partial class initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
