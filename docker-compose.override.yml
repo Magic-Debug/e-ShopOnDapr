@@ -23,13 +23,15 @@ services:
       - "5340:80"
 
   mysql-db:
-    environment:
-      - ROOT_PASSWORD=zxcvbnm
-      - ACCEPT_EULA=Y
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
-      - "5433:1433"
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: zxcvbnm
     volumes:
       - eshop-mysql-db:/var/opt/mysql
+  
 
   zipkin:
     ports:
@@ -72,7 +74,7 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - RetryMigrations=true
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
+      - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
     ports:
       - "5101:80"
       - "50002:50001"
@@ -93,7 +95,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=mysql-db;database=eShop.Identity; UID=root; password=zxcvbnm; SSLMode=none}
+      - MySqlConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=mysql-db;database=eShop.Identity; UID=root; password=zxcvbnm; SSLMode=none}
       - RetryMigrations=true
       - BlazorClientUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5104
       - BasketApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5103
@@ -110,7 +112,7 @@ services:
       - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
       - RetryMigrations=true
       - SeqServerUrl=http://seq
-      - SqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Ordering; UID=root; password=zxcvbnm; SSLMode=none}
+      - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Ordering; UID=root; password=zxcvbnm; SSLMode=none}
     ports:
       - "5102:80"
       - "50003:50001"
@@ -216,7 +218,7 @@ services:
   dapr-placement:
     command: ["./placement", "-port", "50000", "-log-level", "debug"]
     ports:
-      - "50000:50000"
+      - "50500:50000"
 
 volumes:
   eshop-mysql-db:
