@@ -24,7 +24,7 @@ services:
       - redis
 
   basket-api-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:basket-api"
     depends_on:
       - basket-api
@@ -44,7 +44,7 @@ services:
       - mysql-db
 
   catalog-api-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:catalog-api"
     depends_on:
       - catalog-api
@@ -66,7 +66,7 @@ services:
       - mysql-db
 
   ordering-api-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:ordering-api"
     depends_on:
       - ordering-api
@@ -78,7 +78,7 @@ services:
       dockerfile: src/Services/Payment/Payment.API/Dockerfile
 
   payment-api-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:payment-api"
     depends_on:
       - payment-api
@@ -96,7 +96,7 @@ services:
       - mysql-db
 
   webshoppingagg-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:webshoppingagg"
     depends_on:
       - webshoppingagg
@@ -105,7 +105,7 @@ services:
     image: envoyproxy/envoy:v1.14.2
 
   webshoppingapigw-dapr:
-    image: "daprio/daprd:1.4.0"
+    image: "daprio/daprd:1.5.1"
     network_mode: "service:webshoppingapigw"
     depends_on:
       - webshoppingapigw
@@ -123,4 +123,4 @@ services:
       - 8080:8080
 
   dapr-placement:
-    image: "daprio/dapr:1.0.0"
+    image: "daprio/dapr:1.5.1"
