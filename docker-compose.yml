@@ -116,11 +116,9 @@ services:
   mysql-db:
     image: mysql
 
-  adminer:
-    image: adminer
+  ubuntu:
+    image: ubuntu
     restart: always
-    ports:
-      - 8080:8080
 
   dapr-placement:
     image: "daprio/dapr:1.5.1"
