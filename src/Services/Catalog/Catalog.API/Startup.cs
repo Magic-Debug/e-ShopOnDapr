@@ -45,7 +45,8 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API
                     .AllowCredentials());
             });
 
-            var healthChecksBuilder = services.AddHealthChecks();
+            var healthChecksBuilder = services.AddHealthChecks()
+                .AddMySql(Configuration["MySqlConnectionString"]);
             healthChecksBuilder
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()

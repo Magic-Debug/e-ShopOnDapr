@@ -44,6 +44,7 @@ namespace Microsoft.eShopOnDapr.Services.Payment.API
             });
 
             services.AddHealthChecks()
+                .AddMySql(Configuration["MySqlConnectionString"])
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr();
 

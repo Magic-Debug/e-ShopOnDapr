@@ -61,6 +61,7 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
             services.AddAuthentication();
 
             services.AddHealthChecks()
+                .AddMySql(Configuration["MySqlConnectionString"])
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddMySql(Configuration["MySqlConnectionString"],
                     name: "IdentityDB-check",

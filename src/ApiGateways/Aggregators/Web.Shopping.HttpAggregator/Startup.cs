@@ -32,6 +32,7 @@ namespace Microsoft.eShopOnDapr.Web.Shopping.HttpAggregator
         public void ConfigureServices(IServiceCollection services)
         {
             var healthCheckBuilder = services.AddHealthChecks()
+                .AddMySql(Configuration["MySqlConnectionString"])
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()
                 .AddUrlGroup(new Uri(Configuration["CatalogUrlHC"]), name: "catalogapi-check", tags: new string[] { "catalogapi" })

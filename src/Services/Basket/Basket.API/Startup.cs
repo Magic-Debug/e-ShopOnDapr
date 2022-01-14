@@ -92,6 +92,7 @@ namespace Microsoft.eShopOnDapr.Services.Basket.API
 
             services
                 .AddHealthChecks()
+                .AddMySql(Configuration["MySqlConnectionString"])
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr();
 
