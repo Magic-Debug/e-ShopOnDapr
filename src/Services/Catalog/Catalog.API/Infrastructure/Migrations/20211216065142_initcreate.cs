@@ -110,8 +110,8 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
-                .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
-                .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+               oldMaxLength: 100);
+            // .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Price",
@@ -147,11 +147,11 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 name: "Id",
                 table: "CatalogItem",
                 type: "int",
+                maxLength: 100,
                 nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int",
-                .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
-                .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                oldType: "varchar(100)",
+                oldMaxLength: 100);
+            ;
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
@@ -170,8 +170,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
-                .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
-                .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                oldMaxLength: 100);
         }
     }
 }
