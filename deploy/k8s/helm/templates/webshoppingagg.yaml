@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: webshoppingagg
-          image: eshopdapr/webshoppingagg:latest
+          image: wjkhappy14/webshoppingagg:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
