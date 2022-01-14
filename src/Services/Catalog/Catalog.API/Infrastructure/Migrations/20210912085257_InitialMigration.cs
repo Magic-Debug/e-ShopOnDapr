@@ -148,14 +148,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
             migrationBuilder.DropTable(
                 name: "CatalogType");
 
-            migrationBuilder.DropSequence(
-                name: "catalog_brand_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_type_hilo");
         }
     }
 }

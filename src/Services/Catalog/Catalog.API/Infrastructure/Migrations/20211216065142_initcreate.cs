@@ -7,14 +7,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropSequence(
-                name: "catalog_brand_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_type_hilo");
+           
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
@@ -31,7 +24,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 table: "CatalogType",
                 type: "int",
                 nullable: false,
-                collation: "catalog_type_hilo",
                 oldClrType: typeof(int),
                 oldType: "int")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
@@ -72,7 +64,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 table: "CatalogItem",
                 type: "int",
                 nullable: false,
-                collation: "catalog_hilo",
                 oldClrType: typeof(int),
                 oldType: "int")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
@@ -93,7 +84,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 table: "CatalogBrand",
                 type: "int",
                 nullable: false,
-                collation: "catalog_brand_hilo",
                 oldClrType: typeof(int),
                 oldType: "int")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
@@ -102,18 +92,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "catalog_brand_hilo",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "catalog_hilo",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "catalog_type_hilo",
-                incrementBy: 10);
-
+          
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "CatalogType",
@@ -131,7 +110,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
-                oldCollation: "catalog_type_hilo")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
                 .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
@@ -172,7 +150,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
-                oldCollation: "catalog_hilo")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
                 .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
@@ -193,7 +170,6 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
-                oldCollation: "catalog_brand_hilo")
                 .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn)
                 .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
         }

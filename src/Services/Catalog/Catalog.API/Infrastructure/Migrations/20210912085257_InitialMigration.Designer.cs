@@ -21,22 +21,16 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", "");
 
-            modelBuilder.HasSequence("catalog_brand_hilo")
-                .IncrementsBy(10);
+          //  modelBuilder .IncrementsBy(10);
 
-            modelBuilder.HasSequence("catalog_hilo")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("catalog_type_hilo")
-                .IncrementsBy(10);
+         
 
             modelBuilder.Entity("Microsoft.eShopOnDapr.Services.Catalog.API.Model.CatalogBrand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "catalog_brand_hilo")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -70,8 +64,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "catalog_hilo")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AvailableStock")
                         .HasColumnType("int");
@@ -281,8 +274,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "catalog_type_hilo")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()

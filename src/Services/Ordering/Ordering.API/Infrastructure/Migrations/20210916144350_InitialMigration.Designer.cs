@@ -49,8 +49,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                     b.Property<int>("OrderNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "orderseq")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
@@ -67,8 +66,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "orderitemseq")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn);
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");

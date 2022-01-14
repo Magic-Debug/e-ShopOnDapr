@@ -23,7 +23,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseCollation("catalog_brand_hilo");
+                        ;
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -57,7 +57,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseCollation("catalog_hilo");
+                        ;
 
                     b.Property<int>("AvailableStock")
                         .HasColumnType("int");
@@ -267,7 +267,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseCollation("catalog_type_hilo");
+                        ;
 
                     b.Property<string>("Name")
                         .IsRequired()
