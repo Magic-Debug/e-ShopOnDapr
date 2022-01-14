@@ -10,7 +10,7 @@ data:
   ASPNETCORE_ENVIRONMENT: Development
   ASPNETCORE_URLS: http://0.0.0.0:80
   SeqServerUrl: http://seq
-  SqlConnectionString: Server=mysql; database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none
+  MySqlConnectionString: Server=mysql; database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none
 
 ---
 
