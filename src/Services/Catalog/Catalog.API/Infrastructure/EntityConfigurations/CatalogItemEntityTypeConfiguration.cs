@@ -25,12 +25,12 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure.EntityConfig
                 .IsRequired(true);
 
             builder.HasOne(item => item.CatalogBrand)
-                .WithMany()
-                .HasForeignKey(item => item.CatalogBrandId);
+                .WithMany();
+               // .HasForeignKey(item => item.CatalogBrandId);
 
             builder.HasOne(item => item.CatalogType)
-                .WithMany()
-                .HasForeignKey(item => item.CatalogTypeId);
+                .WithMany();
+                //.HasForeignKey(item => item.CatalogTypeId);
 
             builder.HasData(
                 new CatalogItem
