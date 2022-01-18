@@ -60,8 +60,7 @@ spec:
       nodePort: 31306
       protocol: TCP
   selector:
-    app: eshop
-    tier: mysql
+    app: mysql
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
