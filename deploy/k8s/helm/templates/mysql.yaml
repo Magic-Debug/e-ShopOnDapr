@@ -25,10 +25,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: eshopsecrets
-              key: mysql-pass
+          value: zxcvbnm
         livenessProbe:
           tcpSocket:
             port: 3306
