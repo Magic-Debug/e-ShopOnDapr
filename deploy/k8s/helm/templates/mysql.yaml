@@ -27,9 +27,6 @@ spec:
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: zxcvbnm
-        livenessProbe:
-          tcpSocket:
-            port: 3306
         ports:
         - containerPort: 3306
           protocol: TCP
