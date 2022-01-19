@@ -42,7 +42,7 @@ spec:
       containers:
         - name: catalog-api
           image: wjkhappy14/catalog.api:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
               protocol: TCP
