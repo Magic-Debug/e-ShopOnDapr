@@ -40,7 +40,7 @@ spec:
       containers:
         - name: identity-api
           image: wjkhappy14/identity.api:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80

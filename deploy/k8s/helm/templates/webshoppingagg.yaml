@@ -47,7 +47,7 @@ spec:
       containers:
         - name: webshoppingagg
           image: wjkhappy14/webshoppingagg:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80

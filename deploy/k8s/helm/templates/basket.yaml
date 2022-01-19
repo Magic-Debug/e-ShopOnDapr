@@ -43,7 +43,7 @@ spec:
       containers:
         - name: basket-api
           image: wjkhappy14/basket.api:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80

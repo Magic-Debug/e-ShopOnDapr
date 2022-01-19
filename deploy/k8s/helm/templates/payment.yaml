@@ -41,7 +41,7 @@ spec:
       containers:
         - name: payment-api
           image: wjkhappy14/payment.api:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80
