@@ -21,9 +21,17 @@ spec:
       - name: rabbitmq
         image: rabbitmq:3-management-alpine
         imagePullPolicy: IfNotPresent
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: admin
+        - name: RABBITMQ_DEFAULT_PASS
+          value: zxcvbnm
         ports:
           - name: http
             containerPort: 5672
+            protocol: TCP
+          - name: http-admin
+            containerPort: 15672
             protocol: TCP
 
 ---
@@ -44,5 +52,10 @@ spec:
       nodePort: 32672
       protocol: TCP
       name: rabbitmq
+    - port: 15672
+      targetPort: 15672
+      nodePort: 31672
+      protocol: TCP
+      name: rabbitmq-admin
   selector:
     service: rabbitmq
