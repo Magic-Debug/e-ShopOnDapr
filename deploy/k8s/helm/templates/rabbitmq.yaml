@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: eshop
-    service: redis
+    service: rabbitmq
 spec:
   replicas: 1
   selector:
@@ -33,6 +33,9 @@ spec:
           - name: http-admin
             containerPort: 15672
             protocol: TCP
+          - name: http-prometheus
+            containerPort: 15692
+            protocol: TCP
 
 ---
 
@@ -57,5 +60,10 @@ spec:
       nodePort: 31672
       protocol: TCP
       name: rabbitmq-admin
+    - port: 15692
+      targetPort: 15692
+      nodePort: 31692
+      protocol: TCP
+      name: rabbitmq-prometheus
   selector:
     service: rabbitmq
