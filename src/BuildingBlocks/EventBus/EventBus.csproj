@@ -4,8 +4,10 @@
     <RootNamespace>Microsoft.eShopOnContainers.BuildingBlocks.EventBus</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\dapr-sdk-1.4.0\Dapr.Client\Dapr.Client.csproj" />
+    <PackageReference Include="Dapr.Actors" Version="1.5.0" />
+    <PackageReference Include="Dapr.Actors.AspNetCore" Version="1.5.0" />
+    <PackageReference Include="Dapr.AspNetCore" Version="1.5.0" />
+    <PackageReference Include="Dapr.Client" Version="1.5.0" />
+    <PackageReference Include="Dapr.Extensions.Configuration" Version="1.5.0" />
   </ItemGroup>
 </Project>
