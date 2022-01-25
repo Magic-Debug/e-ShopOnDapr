@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+	  <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Microsoft.eShopOnContainers.BuildingBlocks.EventBus</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dapr.Actors" Version="1.5.0" />
-    <PackageReference Include="Dapr.Actors.AspNetCore" Version="1.5.0" />
-    <PackageReference Include="Dapr.AspNetCore" Version="1.5.0" />
-    <PackageReference Include="Dapr.Client" Version="1.5.0" />
-    <PackageReference Include="Dapr.Extensions.Configuration" Version="1.5.0" />
+    <PackageReference Include="Dapr.Actors" Version="1.6.0" />
+    <PackageReference Include="Dapr.Actors.AspNetCore" Version="1.6.0" />
+    <PackageReference Include="Dapr.AspNetCore" Version="1.6.0" />
+    <PackageReference Include="Dapr.Client" Version="1.6.0" />
+    <PackageReference Include="Dapr.Extensions.Configuration" Version="1.6.0" />
   </ItemGroup>
 </Project>
