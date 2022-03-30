@@ -375,3 +375,9 @@ MigrationBackup/
 
 # macOS files
 .DS_Store
+/src/Services/Basket/Basket.API/.aspnet/DataProtection-Keys/key-09182a3f-da12-41e1-8233-0624f791422a.xml
+/src/ApiGateways/Aggregators/Web.Shopping.HttpAggregator/.aspnet/DataProtection-Keys/key-50efe565-aa23-4ad6-aae8-46d53bd69477.xml
+/src/Services/Catalog/Catalog.API/.aspnet/DataProtection-Keys/key-2cf150fc-ee51-43de-bf8b-68cee350cfdd.xml
+/src/Services/Identity/Identity.API/.aspnet/DataProtection-Keys/key-c2883f20-8bfd-4ecb-8ea6-517553210a03.xml
+/src/Services/Ordering/Ordering.API/.aspnet/DataProtection-Keys/key-2d5d8d86-f135-421d-8752-9b308cb09c21.xml
+/src/Web/BlazorClient.Host/.aspnet/DataProtection-Keys/key-9a6ab576-4eb7-4fbf-8df5-e940ee70274a.xml

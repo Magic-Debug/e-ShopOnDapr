@@ -116,9 +116,5 @@ services:
   mysql-db:
     image: mysql
 
-  ubuntu:
-    image: ubuntu
-    restart: always
-
   dapr-placement:
     image: "daprio/dapr:1.5.1"
