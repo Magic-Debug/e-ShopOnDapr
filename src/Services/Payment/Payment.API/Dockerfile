@@ -1,5 +1,5 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-ARG NET_IMAGE=6.0
+ARG NET_IMAGE=latest
 FROM bitnami/aspnet-core:${NET_IMAGE} AS base
 WORKDIR /app
 EXPOSE 80
