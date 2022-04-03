@@ -8,4 +8,5 @@ spec:
   version: v1
   metadata:
   - name: host
-    value: "amqp://rabbitmq:5672"
+    value: "amqp://admin:zxcvbnm@rabbitmq:5672"
+    #amqps://nyipabyg:FUcLCU1Ur-giK6WBtiAiwDJPBJGmB1Ru@gerbil.rmq.cloudamqp.com/nyipabyg
