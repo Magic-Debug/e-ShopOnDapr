@@ -19,7 +19,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(128)", nullable: false),
                     OrderNumber = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(500)", nullable: true),
@@ -42,7 +42,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    OrderId = table.Column<string>(type: "nvarchar(128)", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     UnitPrice = table.Column<decimal>(type: "decimal(4,2)", precision: 4, scale: 2, nullable: false),

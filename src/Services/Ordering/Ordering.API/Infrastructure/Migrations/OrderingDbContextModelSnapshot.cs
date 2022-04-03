@@ -19,9 +19,8 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.eShopOnDapr.Services.Ordering.API.Model.Order", b =>
                 {
-                    b.Property<byte[]>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varbinary(16)");
+                    b.Property<string>("Id")
+                         .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("BuyerEmail")
                         .HasColumnType("text");
@@ -57,8 +56,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                         .UseCollation("orderitemseq");
 
                     b.Property<byte[]>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("varbinary(16)");
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("PictureFileName")
                         .HasColumnType("text");
@@ -88,7 +86,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                     b.OwnsOne("Microsoft.eShopOnDapr.Services.Ordering.API.Model.Address", "Address", b1 =>
                         {
                             b1.Property<byte[]>("OrderId")
-                                .HasColumnType("varbinary(16)");
+                                .HasColumnType("nvarchar(128)");
 
                             b1.Property<string>("City")
                                 .HasColumnType("text");

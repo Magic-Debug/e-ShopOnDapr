@@ -20,7 +20,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldType: "nvarchar(15)",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
@@ -56,7 +56,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldType: "nvarchar(128)",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
@@ -65,7 +65,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldType: "nvarchar(128)",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
@@ -92,7 +92,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldType: "nvarchar(128)",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
@@ -107,9 +107,9 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
             migrationBuilder.AlterColumn<byte[]>(
                 name: "Id",
                 table: "Orders",
-                type: "varbinary(16)",
+                type: "nvarchar(128)",
                 nullable: false,
-                oldClrType: typeof(byte[]),
+                oldClrType: typeof(string),
                 oldType: "(500)");
 
             migrationBuilder.AlterColumn<decimal>(
@@ -145,9 +145,9 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
             migrationBuilder.AlterColumn<byte[]>(
                 name: "OrderId",
                 table: "OrderItems",
-                type: "varbinary(16)",
+                type: "nvarchar(128)",
                 nullable: false,
-                oldClrType: typeof(byte[]),
+                oldClrType: typeof(string),
                 oldType: "(500)");
 
             migrationBuilder.AlterColumn<int>(
@@ -211,7 +211,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "BuyerId",
                 table: "Orders",
-                type: "nvarchar(500)",
+                type: "nvarchar(128)",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "text",
@@ -265,10 +265,10 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
             migrationBuilder.AlterColumn<byte[]>(
                 name: "Id",
                 table: "Orders",
-                type: "nvarchar(500)",
+                type: "nvarchar(128)",
                 nullable: false,
-                oldClrType: typeof(byte[]),
-                oldType: "varbinary(16)");
+                oldClrType: typeof(string),
+                oldType: "nvarchar(16)");
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "UnitPrice",
@@ -305,8 +305,8 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Infrastructure.Migrations
                 table: "OrderItems",
                 type: "(500)",
                 nullable: false,
-                oldClrType: typeof(byte[]),
-                oldType: "varbinary(16)");
+                oldClrType: typeof(string),
+                oldType: "nvarchar(16)");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Id",
