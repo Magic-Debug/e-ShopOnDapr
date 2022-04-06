@@ -43,7 +43,7 @@ namespace Microsoft.eShopOnDapr.Services.Ordering.API.Controllers
             //
             var actorOrder = await orderingProcess.GetOrderDetails();
             var readModelOrder = Model.Order.FromActorState(integrationEvent.OrderId, actorOrder);
-
+            readModelOrder.OrderNumber = DateTimeOffset.Now.Millisecond;
             // Add the order to the read model so it can be queried from the API.
             // It may already exist if this event has been handled before (at-least-once semantics).
             readModelOrder = await _orderRepository.AddOrGetOrderAsync(readModelOrder);
