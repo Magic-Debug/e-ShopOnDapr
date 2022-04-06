@@ -32,12 +32,12 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
                     alice = new ApplicationUser
                     {
                         UserName = "alice",
-                        Email = "AliceSmith@email.com",
+                        Email = "wjkhappy14@hotmail.com",
                         EmailConfirmed = true,
                         CardHolderName = "Alice Smith",
                         CardNumber = "4012888888881881",
                         CardType = 1,
-                        City = "Redmond",
+                        City = "深圳",
                         Country = "U.S.",
                         Expiration = "12/20",
                         Id = Guid.NewGuid().ToString(),
@@ -72,12 +72,12 @@ namespace Microsoft.eShopOnDapr.Services.Identity.API
                     bob = new ApplicationUser
                     {
                         UserName = "bob",
-                        Email = "BobSmith@email.com",
+                        Email = "angkor.wu@live.com",
                         EmailConfirmed = true,
                         CardHolderName = "Bob Smith",
                         CardNumber = "4012888888881881",
                         CardType = 1,
-                        City = "Redmond",
+                        City = "上海",
                         Country = "U.S.",
                         Expiration = "12/20",
                         Id = Guid.NewGuid().ToString(),
