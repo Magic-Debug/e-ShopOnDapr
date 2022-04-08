@@ -7,10 +7,23 @@ version: '3.4'
 
 services:
 
+  minio:
+    environment:
+     - MINIO_ROOT_USER=root 
+     - MINIO_ROOT_PASSWORD=admin123$$
+    command: []
+    restart: always
+    volumes:
+      - minio:/var/opt/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
   rabbitmq:
     environment:
      - RABBITMQ_DEFAULT_USER=admin 
      - RABBITMQ_DEFAULT_PASS=zxcvbnm 
+    restart: always
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -78,6 +91,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - RetryMigrations=true
+      - Minio__Endpoint=http://minio:9000
+      - Minio__SecretKey=admin123$$
+      - Minio__AccessKey=root
       - SeqServerUrl=http://seq
       - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
     ports:
@@ -228,7 +244,7 @@ services:
 volumes:
   eshop-mysql-db:
     external: false
-  eshop-nosqldata:
+  minio:
     external: false
   eshop-basketdata:
     external: false

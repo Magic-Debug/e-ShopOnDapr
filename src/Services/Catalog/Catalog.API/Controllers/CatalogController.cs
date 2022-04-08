@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnDapr.Services.Catalog.API.Infrastructure;
 using Microsoft.eShopOnDapr.Services.Catalog.API.Model;
 using Microsoft.eShopOnDapr.Services.Catalog.API.ViewModel;
+using Microsoft.Extensions.Configuration;
+using Minio;
 
 namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
 {
@@ -16,11 +19,12 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly CatalogDbContext _context;
+        IConfiguration Config { get; }
 
-        public CatalogController(CatalogDbContext context)
+        public CatalogController(CatalogDbContext context, IConfiguration config)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-
+            Config = config ?? throw new ArgumentNullException(nameof(config));
             _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
@@ -57,7 +61,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
             }
 
             return BadRequest("ids value invalid. Must be comma-separated list of numbers");
-        }        
+        }
 
         [HttpGet("items/by_page")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<CatalogItem>), (int)HttpStatusCode.OK)]
@@ -89,6 +93,27 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
                 .ToListAsync();
 
             return new PaginatedItemsViewModel<CatalogItem>(pageIndex, pageSize, totalItems, itemsOnPage);
+        }
+
+        [HttpGet("img/{name}")]
+        public async Task<IActionResult> GetFilesAsync(string name)
+        {
+            string bucketName = "catalog";
+            string endpoint = Config["Minio:Endpoint"];
+            string accessKey = Config["Minio:AccessKey"];
+            string secretKey = Config["Minio:SecretKey"];
+
+            var minio = new MinioClient()
+                .WithCredentials(accessKey, secretKey)
+            .WithEndpoint(endpoint).Build();
+            MemoryStream ms = new MemoryStream();
+
+            GetObjectArgs args = new GetObjectArgs()
+                                               .WithBucket(bucketName)
+                                               .WithObject(name)
+                                               .WithFile(name);
+            var stat = await minio.GetObjectAsync(args);
+            return new PhysicalFileResult(name, stat.ContentType);
         }
     }
 }
