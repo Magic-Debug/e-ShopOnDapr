@@ -1,0 +1,235 @@
+version: '3.4'
+
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+services:
+
+  rabbitmq:
+    environment:
+     - RABBITMQ_DEFAULT_USER=admin 
+     - RABBITMQ_DEFAULT_PASS=zxcvbnm 
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+      - "15692:15692"
+
+  redis:
+    ports:
+      - "5379:6379"
+
+  seq:
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5340:80"
+
+  mysql-db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=zxcvbnm
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3336:3306
+    volumes:
+      - eshop-mysql-db:/var/opt/mysql
+  
+
+  zipkin:
+    ports:
+      - "5411:9411"
+
+  basket-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - IdentityUrl=http://identity-api
+      - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
+      - SeqServerUrl=http://seq
+    ports:
+      - "5103:80"
+      - "50001:50001"
+
+  basket-api-dapr:
+    command: ["./daprd",
+      "-app-id", "basket-api",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  blazor-client:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ApiGatewayUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5202
+      - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
+    ports:
+      - "5104:80"
+
+  catalog-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - RetryMigrations=true
+      - SeqServerUrl=http://seq
+      - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
+    ports:
+      - "5101:80"
+      - "50002:50001"
+
+  catalog-api-dapr:
+    command: ["./daprd",
+      "-app-id", "catalog-api",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  identity-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - SeqServerUrl=http://seq
+      - MySqlConnectionString=${ESHOP_AZURE_IDENTITY_DB:-Server=mysql-db;database=eShop.Identity; UID=root; password=zxcvbnm; SSLMode=none}
+      - RetryMigrations=true
+      - BlazorClientUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5104
+      - BasketApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5103
+      - OrderingApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5102
+      - ShoppingAggregatorApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5121
+    ports:
+      - "5105:80"
+
+  ordering-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - IdentityUrl=http://identity-api
+      - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
+      - RetryMigrations=true
+      - SeqServerUrl=http://seq
+      - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Ordering; UID=root; password=zxcvbnm; SSLMode=none}
+    ports:
+      - "5102:80"
+      - "50003:50001"
+
+  ordering-api-dapr:
+    command: ["./daprd",
+      "-app-id", "ordering-api",
+      "-app-port", "80",
+      "-log-level", "debug",
+      "-placement-host-address", "dapr-placement:50000",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  payment-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - SeqServerUrl=http://seq
+    ports:
+      - "5108:80"
+      - "50006:50001"
+
+  payment-api-dapr:
+    command: ["./daprd",
+      "-app-id", "payment-api",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  webshoppingagg:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - urls__basket=http://basket-api
+      - urls__catalog=http://catalog-api
+      - urls__identity=http://identity-api
+      - BasketUrlHC=http://basket-api/hc
+      - CatalogUrlHC=http://catalog-api/hc
+      - IdentityUrlHC=http://identity-api/hc
+      - PaymentUrlHC=http://payment-api/hc
+      - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
+    ports:
+      - "5121:80"
+      - "50007:50001"
+
+  webshoppingagg-dapr:
+    command: ["./daprd",
+      "-app-id", "webshoppingagg",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  webshoppingapigw:
+    volumes:
+      - ./src/ApiGateways/Envoy:/etc/envoy
+    ports:
+    - "5202:80"
+    - "15202:8001"
+    - "50008:50001"
+
+  webshoppingapigw-dapr:
+    command: ["./daprd",
+      "-app-id", "webshoppingapigw",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/eshop-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  webstatus:
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - HealthChecksUI__HealthChecks__0__Name=Basket API
+      - HealthChecksUI__HealthChecks__0__Uri=http://basket-api/hc
+      - HealthChecksUI__HealthChecks__1__Name=Catalog API
+      - HealthChecksUI__HealthChecks__1__Uri=http://catalog-api/hc
+      - HealthChecksUI__HealthChecks__2__Name=Identity API
+      - HealthChecksUI__HealthChecks__2__Uri=http://identity-api/hc
+      - HealthChecksUI__HealthChecks__3__Name=Ordering API
+      - HealthChecksUI__HealthChecks__3__Uri=http://ordering-api/hc
+      - HealthChecksUI__HealthChecks__4__Name=Payment API
+      - HealthChecksUI__HealthChecks__4__Uri=http://payment-api/hc
+      - HealthChecksUI__HealthChecks__5__Name=Web Shopping Aggregator
+      - HealthChecksUI__HealthChecks__5__Uri=http://webshoppingagg/hc
+      - HealthChecksUI__HealthChecks__6__Name=Blazor Client
+      - HealthChecksUI__HealthChecks__6__Uri=http://blazor-client/hc
+    ports:
+      - "5107:80"
+
+  dapr-placement:
+    command: ["./placement", "-port", "50000", "-log-level", "debug"]
+    ports:
+      - "50500:50000"
+
+volumes:
+  eshop-mysql-db:
+    external: false
+  eshop-nosqldata:
+    external: false
+  eshop-basketdata:
+    external: false
+
+networks:
+  default:
+    external:
+      name: nat
