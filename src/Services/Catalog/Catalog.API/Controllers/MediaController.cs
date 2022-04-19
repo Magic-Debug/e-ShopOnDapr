@@ -58,7 +58,12 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
                 return Json(new { });
             }
         }
-        [HttpGet]
+        /// <summary>
+        /// http://192.168.1.5:5101/api/v1/catalog/img/10.jpeg
+        /// </summary>
+        /// <param name="objectName"></param>
+        /// <returns></returns>
+        [HttpGet]//
         [Route("/api/v1/catalog/img/{objectName}")]
         public async Task<IActionResult> GetFileAsync(string objectName = "hello.jpg")
         {

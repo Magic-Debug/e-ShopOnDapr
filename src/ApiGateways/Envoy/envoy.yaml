@@ -43,7 +43,7 @@ static_resources:
                   prefix: "/c/pics/"
                 route:
                   auto_host_rewrite: true
-                  prefix_rewrite: "/api/v1/catalog/img/"
+                  prefix_rewrite: "/api/v1/catalog/img/" #http://192.168.1.5:5202/c/pics/10.jpeg
                   cluster: catalog
               - name: "c-short"
                 match:
