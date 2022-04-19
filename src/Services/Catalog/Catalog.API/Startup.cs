@@ -77,8 +77,7 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API
 
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "Pics")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Pics")),
                 RequestPath = "/pics"
             });
 

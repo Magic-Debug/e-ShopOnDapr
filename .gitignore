@@ -382,3 +382,4 @@ MigrationBackup/
 /src/Services/Ordering/Ordering.API/.aspnet/DataProtection-Keys/key-2d5d8d86-f135-421d-8752-9b308cb09c21.xml
 /src/Web/BlazorClient.Host/.aspnet/DataProtection-Keys/key-9a6ab576-4eb7-4fbf-8df5-e940ee70274a.xml
 /minio/data/.minio.sys
+/minio/data
