@@ -8,4 +8,4 @@ spec:
   version: v1
   metadata:
   - name: host
-    value: "amqp://rabbitmq:5672"
+    value:  "amqp://admin:zxcvbnm@rabbitmq:5672"

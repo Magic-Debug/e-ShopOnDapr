@@ -92,10 +92,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - RetryMigrations=true
-      - Minio__Endpoint=http://minio:9000
-      - Minio__SecretKey=admin123$$
+      - Minio__Endpoint=minio:9000
+      - Minio__SecretKey=${MINIO_ROOT_PASSWORD}
       - Minio__BucketName=eshop-catalog
-      - Minio__AccessKey=root
+      - Minio__AccessKey=${MINIO_ROOT_USER}
       - SeqServerUrl=http://seq
       - MySqlConnectionString=${ESHOPONDAPR_CATALOG_DB:-Server=mysql-db;database=eShop.Catalog; UID=root; password=zxcvbnm; SSLMode=none}
     ports:

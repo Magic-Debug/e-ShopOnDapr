@@ -94,26 +94,5 @@ namespace Microsoft.eShopOnDapr.Services.Catalog.API.Controllers
 
             return new PaginatedItemsViewModel<CatalogItem>(pageIndex, pageSize, totalItems, itemsOnPage);
         }
-
-        [HttpGet("img/{name}")]
-        public async Task<IActionResult> GetFilesAsync(string name)
-        {
-            string bucketName = "catalog";
-            string endpoint = Config["Minio:Endpoint"];
-            string accessKey = Config["Minio:AccessKey"];
-            string secretKey = Config["Minio:SecretKey"];
-
-            var minio = new MinioClient()
-                .WithCredentials(accessKey, secretKey)
-            .WithEndpoint(endpoint).Build();
-            MemoryStream ms = new MemoryStream();
-
-            GetObjectArgs args = new GetObjectArgs()
-                                               .WithBucket(bucketName)
-                                               .WithObject(name)
-                                               .WithFile(name);
-            var stat = await minio.GetObjectAsync(args);
-            return new PhysicalFileResult(name, stat.ContentType);
-        }
     }
 }
