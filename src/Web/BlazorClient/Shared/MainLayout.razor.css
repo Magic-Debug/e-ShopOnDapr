@@ -1,5 +1,5 @@
 .esh-app-header {
-    background: url('/images/header.jpg') center -2.7rem no-repeat, linear-gradient(90deg, #7979ac 0%, #7979ac 35%, #0d2092 65%, #0d2092 100%);
+    background: url('/images/header.jpg') center -2.7rem no-repeat, linear-gradient(90deg, #ad8517 0%, #66bd5a 35%, #b18698 65%, #b32020 100%);
     background-size: 94rem, auto;
     height: 13rem;
     padding-top: 2.25rem;
@@ -48,7 +48,7 @@
 
 .esh-app-header-promo-subtitle {
     display: block;
-    color: #fff;
+    color: rgb(39, 15, 105);
     font-size: 1.5625rem;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .esh-app-footer {
-    background-color: #7979ac;
+    background-color: #552030;
     color: #fff;
     font-size: 1rem;
     display: flex;

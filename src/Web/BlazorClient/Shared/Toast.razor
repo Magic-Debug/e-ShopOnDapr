@@ -15,8 +15,8 @@
         if (OrderState != _prevOrderState)
         {
             _toastService.ShowInfo(
-                $"Your order status has been updated to \"{OrderState.Status}\".",
-                $"Order #{OrderState.OrderNumber}");
+                $"您的订单状态已经更新为： \"{OrderState.Status}\".",
+                $"订单 #{OrderState.OrderNumber}");
 
             _prevOrderState = OrderState;
         }
