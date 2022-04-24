@@ -1,0 +1,6 @@
+使用特定重写文件进行部署
+约定docker-compose.yml文件包含基本配置和其他静态设置,服务配置不根据所针对的部署环境而改变
+docker-compose.override.yml文件包含替代基本配置的配置设置，如依赖于部署环境的配置。 用户可以拥有具有不同名称的多个重写文件
+重写文件通常包含应用程序所需的但特定于环境或部署的其他信息
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+将.env文件放置在执行docker-compose命令的文件夹中,使用 .env 文件

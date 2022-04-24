@@ -108,6 +108,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 		deploy\k8s\helm\templates\zipkin.yaml = deploy\k8s\helm\templates\zipkin.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tips", "tips", "{D1F73831-F4DF-4D6A-8205-D405EDC58F34}"
+	ProjectSection(SolutionItems) = preProject
+		docker tips.txt = docker tips.txt
+		C:\Users\wjkha\Documents\WeChat Files\wjkhappy14\FileStorage\File\2022-04\docker-images-clean.sh = C:\Users\wjkha\Documents\WeChat Files\wjkhappy14\FileStorage\File\2022-04\docker-images-clean.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
