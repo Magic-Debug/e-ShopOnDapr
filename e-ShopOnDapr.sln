@@ -112,6 +112,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tips", "tips", "{D1F73831-F
 	ProjectSection(SolutionItems) = preProject
 		docker tips.txt = docker tips.txt
 		C:\Users\wjkha\Documents\WeChat Files\wjkhappy14\FileStorage\File\2022-04\docker-images-clean.sh = C:\Users\wjkha\Documents\WeChat Files\wjkhappy14\FileStorage\File\2022-04\docker-images-clean.sh
+		Dockerfiles-Tips.txt = Dockerfiles-Tips.txt
 	EndProjectSection
 EndProject
 Global
