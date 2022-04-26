@@ -10,7 +10,7 @@ data:
   ASPNETCORE_ENVIRONMENT: Development
   ASPNETCORE_URLS: http://0.0.0.0:80
   IdentityUrl: http://identity-api
-  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
+  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30018
   SeqServerUrl: http://seq
 
 ---
@@ -67,7 +67,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30005
+      nodePort: 30015
       protocol: TCP
       name: http
   selector:

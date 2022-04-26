@@ -10,7 +10,7 @@ data:
   ASPNETCORE_ENVIRONMENT: Development
   ASPNETCORE_URLS: http://0.0.0.0:80
   IdentityUrl: http://identity-api
-  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
+  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30018
   SeqServerUrl: http://seq
   MySqlConnectionString: Server=mysql; database=eShop.Ordering; UID=root; password=zxcvbnm; SSLMode=none
 
@@ -68,7 +68,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30002
+      nodePort: 30012
       protocol: TCP
       name: http
   selector:
