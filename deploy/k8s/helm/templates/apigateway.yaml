@@ -214,22 +214,22 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30050
+      nodePort: 30150
       protocol: TCP
       name: http
     - port: 8001
       targetPort: 8001
-      nodePort: 30051
+      nodePort: 30151
       protocol: TCP
       name: admin
     - port: 3500
       targetPort: 3500
-      nodePort: 30052
+      nodePort: 30152
       protocol: TCP
       name: daprhttp
     - port: 50001
       targetPort: 50001
-      nodePort: 30053
+      nodePort: 30153
       protocol: TCP
       name: daprgrpc
   selector:
