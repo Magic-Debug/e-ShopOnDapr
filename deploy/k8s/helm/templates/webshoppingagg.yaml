@@ -10,7 +10,7 @@ data:
   ASPNETCORE_ENVIRONMENT: Development
   BasketUrlHC: http://basket-api/hc
   CatalogUrlHC: http://catalog-api/hc
-  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
+  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30018
   IdentityUrlHC: http://identity-api/hc
   PATH_BASE: /webshoppingagg
   PaymentUrlHC: http://payment-api/hc
@@ -71,7 +71,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30006
+      nodePort: 30016
       protocol: TCP
       name: http
   selector:
