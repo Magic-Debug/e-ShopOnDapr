@@ -11,10 +11,10 @@ data:
   ASPNETCORE_URLS: http://0.0.0.0:80
   SeqServerUrl: http://seq
   MySqlConnectionString: Server=mysql; database=eShop.Identity; UID=root; password=zxcvbnm; SSLMode=none
-  BlazorClientUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30000
-  BasketApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30005
-  OrderingApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30002
-  ShoppingAggregatorApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30006
+  BlazorClientUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30010
+  BasketApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30015
+  OrderingApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30032
+  ShoppingAggregatorApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30016
 
 ---
 
