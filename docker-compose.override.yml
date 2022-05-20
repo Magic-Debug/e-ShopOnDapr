@@ -47,7 +47,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - 3336:3306
+      - 3036:3306
     volumes:
       - eshop-mysql-db:/var/opt/mysql
   
